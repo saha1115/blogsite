@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Posts</title>
+</head>
+<body>
+    <h2>All Blog Posts</h2>
+
+    <!-- পোস্টের তালিকা প্রদর্শন -->
+    <ul>
+        {% for post in posts %}
+            <li>
+                <!-- পোস্টের বিস্তারিত পেজে লিঙ্ক -->
+                <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+
+                <!-- পোস্ট তৈরি সময় -->
+                <span>Created: {{ post.created }}</span>
+
+                <!-- পোস্ট এডিট পেজে লিঙ্ক -->
+                <a href="{% url 'post_edit' post.pk %}">Edit</a>
+
+                <!-- পোস্ট ডিলিট পেজে লিঙ্ক -->
+                <a href="{% url 'post_delete' post.pk %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No posts available.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- নতুন পোস্ট তৈরি করার লিঙ্ক -->
+    <a href="{% url 'post_create' %}">Create New Post</a>
+</body>
+</html>
